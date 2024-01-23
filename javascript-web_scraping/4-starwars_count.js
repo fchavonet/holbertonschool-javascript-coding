@@ -10,7 +10,7 @@ request(apiURL, (err, response, body) => {
   } else {
     const movieData = JSON.parse(body).results;
     const moviesWithWedgeAntilles = movieData.filter((movie) =>
-      movie.characters.includes(`https://swapi-api.hbtn.io/api/people/${characterID}/`)
+      movie.characters.some((character) => character.includes(`/people/${characterID}/`))
     );
     console.log(moviesWithWedgeAntilles.length);
   }
