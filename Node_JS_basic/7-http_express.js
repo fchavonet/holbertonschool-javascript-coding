@@ -33,7 +33,7 @@ async function countStudents(path) {
 
     return response.join('\n');
   } catch (err) {
-    throw new Error('Cannot load the database');
+    return 'Cannot load the database';
   }
 }
 
