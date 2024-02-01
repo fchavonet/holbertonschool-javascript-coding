@@ -9,7 +9,7 @@ const app = http.createServer((req, res) => {
   const { url } = req;
 
   if (url === '/') {
-    res.end('Hello Holberton School!\n');
+    res.end('Hello Holberton School!');
   } else if (url === '/students') {
     if (!databaseFile) {
       res.end('Error: Database file not provided\n');
