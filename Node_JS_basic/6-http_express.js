@@ -5,29 +5,13 @@ const app = express();
 
 // Define routes
 app.get('/', (req, res) => {
-    res.send('Hello Holberton School!');
-});
-
-// Error handling for undefined routes
-app.use((req, res) => {
-    res.status(404).send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="utf-8">
-        <title>Error</title>
-        </head>
-        <body>
-        <pre>Cannot GET ${req.url}</pre>
-        </body>
-        </html>
-    `);
+  res.send('Hello Holberton School!');
 });
 
 // Start the server
-const PORT = 1245;
-app.listen(PORT, () => {
-    console.log(`Server is running and listening on port ${PORT}`);
+const port = 1245;
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/!`);
 });
 
-module.exports = app; // Export the Express app
+module.exports = app;
