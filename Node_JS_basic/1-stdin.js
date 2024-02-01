@@ -1,23 +1,19 @@
 // Display a message prompting the user for their name.
 process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-// Set the encoding of the standard input stream to UTF-8.
-process.stdin.setEncoding('utf8');
-
 // Listen for data events on the standard input stream.
-process.stdin.on('data', (data) => {
-  // Convert the input data to a string and remove leading/trailing whitespace.
-  const input = data.toString().trim();
+process.stdin.on('readable', () => {
+  // Read the input data from the standard input stream.
+  const input = process.stdin.read();
 
   // Check if there is any input provided by the user.
-  if (input) {
+  if (input !== null) {
     // If input is provided, display a message with the user's name.
-    process.stdout.write(`Your name is: ${input}\n`);
+    process.stdout.write(`Your name is: ${input}`);
   }
+});
 
+process.stdin.on('end', () => {
   // Display a closing message.
   process.stdout.write('This important software is now closing\n');
-
-  // Exit the Node.js process.
-  process.exit();
 });
