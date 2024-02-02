@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const PORT = 1245;
 const HOST = 'localhost';
+const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
 const countStudents = (dataPath) => {
@@ -57,7 +58,7 @@ const countStudents = (dataPath) => {
     });
 };
 
-const app = http.createServer((req, res) => {
+const handleRequest = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
 
     const { url } = req;
@@ -83,7 +84,9 @@ const app = http.createServer((req, res) => {
         res.statusCode = 404;
         res.end('404 Not Found\n');
     }
-});
+};
+
+app.on('request', handleRequest);
 
 app.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}/`);
