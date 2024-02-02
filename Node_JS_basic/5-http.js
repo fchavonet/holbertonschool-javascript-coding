@@ -66,6 +66,7 @@ const app = http.createServer((req, res) => {
         res.end('Hello Holberton School!');
     } else if (url === '/students') {
         if (!DB_FILE) {
+            res.statusCode = 500;
             res.end('Error: Database file not provided\n');
             return;
         }
@@ -75,6 +76,7 @@ const app = http.createServer((req, res) => {
                 res.end('This is the list of our students\n' + report);
             })
             .catch((error) => {
+                res.statusCode = 500;
                 res.end(`Error: ${error.message}\n`);
             });
     } else {
